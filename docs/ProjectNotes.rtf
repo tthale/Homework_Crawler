@@ -1,0 +1,168 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fmodern Lucida Console;}{\f2\fmodern\fcharset0 Lucida Console;}{\f3\fnil\fcharset0 Trebuchet MS;}{\f4\fnil Consolas;}{\f5\fnil\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue255;\red0\green0\blue0;\red255\green0\blue0;}
+{\*\generator Riched20 6.2.9200}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs24\lang9 (This file @ {{\field{\*\fldinst{HYPERLINK https://drive.google.com/open?id=1TElFO9KlRHCJAeEf1W6qeeAMdc94IG2q }}{\fldrslt{https://drive.google.com/open?id=1TElFO9KlRHCJAeEf1W6qeeAMdc94IG2q\ul0\cf0}}}}\f0\fs24  )\par
+
+\pard\sl240\slmult1\qc\fs28\par
+Homework Crawler Install Notes\par
+
+\pard\sl240\slmult1\fs22\par
+There's several components that need to be installed to get the Java-based Homework Crawler to interact correctly with the Python-based components of the Google Spreadsheet Filler application. In between, there are more shell and Python adapters performing the necessary argument processing for the two major halves.\par
+\par
+a) Install JVM - minumum version 8, @  {{\field{\*\fldinst{HYPERLINK https://www.java.com/en/download/ }}{\fldrslt{https://www.java.com/en/download/\ul0\cf0}}}}\f0\fs22  (check if already installed by executing java --version)\par
+b) Optionally, check out the HomeworkCrawler project @ {{\field{\*\fldinst{HYPERLINK https://github.com/lhale/VCHS_HomeworkCrawler.git }}{\fldrslt{https://github.com/lhale/VCHS_HomeworkCrawler.git\ul0\cf0}}}}\f0\fs22  (that will cover the executable HomeworkCrawler.jar file and the runSpreadsheetUpdater.sh adapter program .\par
+c) Install Git bash @ {{\field{\*\fldinst{HYPERLINK https://git-scm.com/downloads }}{\fldrslt{https://git-scm.com/downloads\ul0\cf0}}}}\f0\fs22\par
+d) Install Python - minimum version 2.7.14 (check if already installed by executing python --version)\par
+e) Install pip via instructions @ {{\field{\*\fldinst{HYPERLINK https://www.makeuseof.com/tag/install-pip-for-python/ }}{\fldrslt{https://www.makeuseof.com/tag/install-pip-for-python/\ul0\cf0}}}}\f0\fs22  and verify it's installed in the Scripts subdirectory of where your Python is installed (which means this subdirectory should be in your system's PATH).\par
+f) Install pygsheets via '\f1\fs18  pip install {{\field{\*\fldinst{HYPERLINK https://github.com/nithinmurali/pygsheets/archive/master.zip' }}{\fldrslt{https://github.com/nithinmurali/pygsheets/archive/master.zip\f2\lang1033 '\ul0\cf0}}}}\f2\fs18\lang1033 . Unfortunately, there is no \f0\fs22\lang9 'pip install pygsheets'\par
+g) Download the CredentialEncrypter program @ {\kerning24\f3\fs24\lang1033{\field{\*\fldinst{HYPERLINK https://github.com/tthale/Python-Encrypter.git }}{\fldrslt{https://github.com/tthale/Python-Encrypter.git\ul0\cf0}}}}\cf2\kerning24\f3\fs24\lang1033  \par
+j) Depending upon a previous install of Python, you may have to add these additional libs:\par
+     \cf0\kerning0\f1\fs18 pip install urllib3\par
+\f2     \f1 pip install --upgrade pyOpenSSL ndg-httpsclient pyasn1\par
+\f2     \f1 pip install python-dev libffi-dev libssl-dev\par
+\f2     \f1 pip install requests==2.5.3\f2  \cf2\kerning24\f3\fs24\par
+h) Install pycrypto via \lquote pip install pycrypto\rquote . You might need to build this if issues arise - see the Homework Crawler's PowerPoint presentation for more details on how to do that.\par
+i) \par
+\par
+Refs:\par
+{{\field{\*\fldinst{HYPERLINK https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html }}{\fldrslt{https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html\ul0\cf0}}}}\f3\fs24\par
+(This includes getting the Service Acct JSON credentials (aka client_secret.json) in your gmail acct )\par
+\par
+__________________________________________________________________________________________\par
+ \par
+
+\pard\sl240\slmult1\qc APPENDIX\par
+
+\pard\sl240\slmult1\par
+Google Docs API:\par
+{\cf0{\field{\*\fldinst{HYPERLINK https://developers.google.com/docs/api/how-tos/authorizing }}{\fldrslt{https://developers.google.com/docs/api/how-tos/authorizing\ul0\cf0}}}}\f3\fs24\par
+(Another docs explaining how to obtain OAuth2 credentials)\par
+\par
+\par
+\cf0\kerning0\f0\fs22\lang9\par
+\par
+\par
+
+\pard\sl240\slmult1\qc\fs24 Travails in attempting to use the Java based Google Spreadsheet API v4\par
+
+\pard\sl240\slmult1\fs22\par
+{{\field{\*\fldinst{HYPERLINK http://www.ebay.com/itm/Texas-Instruments-TI-84-Plus-Graphing-Calculator-/162646509456?epid=92222436&hash=item25de7cc790:g:XMgAAOSw71xZoPU~ }}{\fldrslt{http://www.ebay.com/itm/Texas-Instruments-TI-84-Plus-Graphing-Calculator-/162646509456?epid=92222436&hash=item25de7cc790:g:XMgAAOSw71xZoPU~\ul0\cf0}}}}\f0\fs22\par
+162646509456\par
+\par
+\par
+Using Google Spreadsheet API v4, and using 'that simple' solution above\par
+\par
+I get following exception: \par
+IOException: Error reading credentials from stream, 'type' field not specified.\par
+\par
+I've read elsewhere that there apparently are different 'flavors' of the JSON application credential file, that apparently has a 'type' field in it (but mine doesn't). So how to obtain a  GoogleCredential with the flavor of the JSON file downloaded not having the 'type' field ?\par
+\par
+   I've also tried other (documented) ways of obtaining a GoogleCredential without success (always exceptions out with different exceptions). I know my JSON file is OK because I can obtain a Credential with it but not a GoogleCredential, which is required by other Worksheet methods.\par
+\par
+   So, it's more true that different credentials are required to operate on a Google spreadsheet (for example, the application credential can read in the whole spreadsheet but cannot create a new worksheet [aka Sheet using the Sheets API]) which is a "system level" GoogleCredential type (as opposed to the Credential type for the appliction credential).  Even so, with a system level credential I'm getting a HTTP 401 (Unauthorized) error, so I still need to figure out just what credential(s) will work for the basic operations of reading in a Spreadsheet's worksheets , annotating them and possibly creating and editing new Worksheets (very elemental operations - sheesh)\par
+^-- What worked for us (Tom&I) on the Python side was to expand the scope collection of permissions - that just might mitigate the 401 issue.\par
+\par
+\par
+Others having probs deriving credentials from the system level JSON credentials:\par
+https://github.com/google/google-api-java-client/issues/1007\par
+\par
+Hey - here's some good looking info on the Google credential process (hopefully current) :\par
+{{\field{\*\fldinst{HYPERLINK https://media.readthedocs.org/pdf/pygsheets/staging/pygsheets.pdf }}{\fldrslt{https://media.readthedocs.org/pdf/pygsheets/staging/pygsheets.pdf\ul0\cf0}}}}\f0\fs22\par
+\par
+\cf2\f4\fs20 Today's date: September 27, 2017\cf0\par
+\cf3 Starting ChromeDriver 2.31.488763 (092de99f48a300323ecf8c2a4e2e7cab51de5ba8) on port 13769\cf0\par
+\cf3 Only local connections are allowed.\cf0\par
+\cf3 Sep 27, 2017 9:05:04 PM org.openqa.selenium.remote.ProtocolHandshake createSession\cf0\par
+\cf3 INFO: Detected dialect: OSS\cf0\par
+\cf2 Title:Learn@VCS | Just Everyday Learning at Valley Christian Schools...: Log in to the site\cf0\par
+\cf2 File already exists.\cf0\par
+\cf2 algebra:\cf0\par
+\cf2 Menu:\cf0\par
+\cf2 <a class="skip skip-block" id="fsb-1" href="#sb-1">Skip Menu</a><div class="menu block block_fake" data-block="_fake"><div class="header"><div class="title"><div class="block_action"></div><h2>Menu</h2></div></div><div class="content"><a href="#maincontent" class="accesshide">Skip navigation</a>\cf0\par
+\cf2 <div class="menuwrapper">\cf0\par
+\cf2 <ul>\cf0\par
+\cf2 <li class="selected">August 14, 2017</li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254001 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254001\ul0\cf0}}}}\f4\fs20 ">August 16</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254002 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254002\ul0\cf0}}}}\f4\fs20 ">August 18</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254003 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254003\ul0\cf0}}}}\f4\fs20 ">August 22</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254004 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254004\ul0\cf0}}}}\f4\fs20 ">August 24</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254005 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254005\ul0\cf0}}}}\f4\fs20 ">August 28</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254006 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254006\ul0\cf0}}}}\f4\fs20 ">August 30</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254007 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254007\ul0\cf0}}}}\f4\fs20 ">September 1</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254008 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254008\ul0\cf0}}}}\f4\fs20 ">September 6</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254009 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254009\ul0\cf0}}}}\f4\fs20 ">September 8</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254010 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254010\ul0\cf0}}}}\f4\fs20 ">September 12</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254011 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254011\ul0\cf0}}}}\f4\fs20 ">September 14</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254012 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254012\ul0\cf0}}}}\f4\fs20 ">September 18</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254013 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254013\ul0\cf0}}}}\f4\fs20 ">September 20</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254014 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=127472&amp;pageid=254014\ul0\cf0}}}}\f4\fs20 ">September 22</a></li>\cf0\par
+\cf2 </ul>\cf0\par
+\cf2 </div>\cf0\par
+\cf2 </div></div><span class="skip-block-to" id="sb-1"></span>\cf0\par
+\cf3 can't find appropriate algebra menu link for previous three days, today and tomorrow - perhaps there's nothing to show ?\cf0\par
+\cf2 September_27 Homework for algebra:\cf0\par
+\cf2 1) Read Syllabus in detail (you and your parents) and sign the signature sheet\cf0\par
+\cf2 2) Complete Get to Know You Student Survey (if you didn't finish it in class)\cf0\par
+\cf2 3) Purchase ALEKs from EdTech\cf0\par
+\cf2 4) Complete in-app purchase of HMH Fuse textbook app\cf0\par
+\cf2 5) Complete Algebra Review Worksheet\cf0\par
+\cf2 chemistry:\cf0\par
+\cf2 Menu:\cf0\par
+\cf2 <a class="skip skip-block" id="fsb-1" href="#sb-1">Skip Menu</a><div class="menu block block_fake" data-block="_fake"><div class="header"><div class="title"><div class="block_action"></div><h2>Menu</h2></div></div><div class="content"><a href="#maincontent" class="accesshide">Skip navigation</a>\cf0\par
+\cf2 <div class="menuwrapper">\cf0\par
+\cf2 <ul>\cf0\par
+\cf2 <li class="selected">Tuesday, August 15</li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245156 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245156\ul0\cf0}}}}\f4\fs20 ">Thursday, August 17</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245157 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245157\ul0\cf0}}}}\f4\fs20 ">Monday, August 21</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245158 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245158\ul0\cf0}}}}\f4\fs20 ">Wednesday, August 23</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245159 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245159\ul0\cf0}}}}\f4\fs20 ">Friday, August 25</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245160 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245160\ul0\cf0}}}}\f4\fs20 ">Tuesday, August 29</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245161 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245161\ul0\cf0}}}}\f4\fs20 ">Thursday, August 31</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245162 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245162\ul0\cf0}}}}\f4\fs20 ">Tuesday, September 5</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245163 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245163\ul0\cf0}}}}\f4\fs20 ">Thursday, September 7</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245164 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245164\ul0\cf0}}}}\f4\fs20 ">Monday, September 11</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245165 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245165\ul0\cf0}}}}\f4\fs20 ">Wednesday, September 13</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245166 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245166\ul0\cf0}}}}\f4\fs20 ">Friday, September 15</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245167 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245167\ul0\cf0}}}}\f4\fs20 ">Tuesday, September 19</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245168 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245168\ul0\cf0}}}}\f4\fs20 ">Thursday, September 21</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245169 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245169\ul0\cf0}}}}\f4\fs20 ">Monday, September 25</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245170 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245170\ul0\cf0}}}}\f4\fs20 ">Wednesday, September, 27</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245171 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245171\ul0\cf0}}}}\f4\fs20 ">Friday, September 29</a></li>\cf0\par
+\cf2 </ul>\cf0\par
+\cf2 </div>\cf0\par
+\cf2 </div></div><span class="skip-block-to" id="sb-1"></span>\cf0\par
+\cf2 September_27 Homework for chemistry:\cf0\par
+\cf2 1) Quiz on chapter 3\cf0\par
+\cf2 2) Atomic theory assignment ( finish only till Dalton)\cf0\par
+\cf2 history:\cf0\par
+\cf2 Menu:\cf0\par
+\cf2 <a class="skip skip-block" id="fsb-1" href="#sb-1">Skip Menu</a><div class="menu block block_fake" data-block="_fake"><div class="header"><div class="title"><div class="block_action"></div><h2>Menu</h2></div></div><div class="content"><a href="#maincontent" class="accesshide">Skip navigation</a>\cf0\par
+\cf2 <div class="menuwrapper">\cf0\par
+\cf2 <ul>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245155 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245155\ul0\cf0}}}}\f4\fs20 ">Tuesday, August 15</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245156 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245156\ul0\cf0}}}}\f4\fs20 ">Thursday, August 17</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245157 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245157\ul0\cf0}}}}\f4\fs20 ">Monday, August 21</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245158 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245158\ul0\cf0}}}}\f4\fs20 ">Wednesday, August 23</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245159 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245159\ul0\cf0}}}}\f4\fs20 ">Friday, August 25</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245160 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245160\ul0\cf0}}}}\f4\fs20 ">Tuesday, August 29</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245161 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245161\ul0\cf0}}}}\f4\fs20 ">Thursday, August 31</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245162 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245162\ul0\cf0}}}}\f4\fs20 ">Tuesday, September 5</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245163 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245163\ul0\cf0}}}}\f4\fs20 ">Thursday, September 7</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245164 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245164\ul0\cf0}}}}\f4\fs20 ">Monday, September 11</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245165 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245165\ul0\cf0}}}}\f4\fs20 ">Wednesday, September 13</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245166 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245166\ul0\cf0}}}}\f4\fs20 ">Friday, September 15</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245167 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245167\ul0\cf0}}}}\f4\fs20 ">Tuesday, September 19</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245168 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245168\ul0\cf0}}}}\f4\fs20 ">Thursday, September 21</a></li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245169 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245169\ul0\cf0}}}}\f4\fs20 ">Monday, September 25</a></li>\cf0\par
+\cf2 <li class="selected">Wednesday, September, 27</li>\cf0\par
+\cf2 <li class="notselected"><a href="{\cf0{\field{\*\fldinst{HYPERLINK https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245171 }}{\fldrslt{https://learn.vcs.net/mod/lesson/view.php?id=124125&amp;pageid=245171\ul0\cf0}}}}\f4\fs20 ">Friday, September 29</a></li>\cf0\par
+\cf2 </ul>\cf0\par
+\cf2 </div>\cf0\par
+\cf2 </div></div><span class="skip-block-to" id="sb-1"></span>\cf0\par
+\par
+\par
+{{\field{\*\fldinst{HYPERLINK ftp://ftp.ncdc.noaa.gov/pub/data/paleo/climate_forcing/trace_gases/phanerozoic_co2.txt }}{\fldrslt{ftp://ftp.ncdc.noaa.gov\f5\lang1033 /pub/data/paleo/climate_forcing/trace_gases/phanerozoic_co2.txt\ul0\cf0}}}}\f5\fs20\lang1033\par
+\par
+\f4\lang9\par
+}
+ 
