@@ -311,7 +311,7 @@ public class VCHS_HomeworkCrawler3 {
 						<li>2.3&nbsp; #18-45m3, 46, 47, 54-60m3</li>
 						<li><span style="color: #ff0000;">Study for 2.1-2.3 Quiz next class</span></li>
 					</ul>
-					
+					// Tom wuz here
 					OR
 					
 					<h3><span style="font-family: 'times new roman', times, serif;">Homework:</span></h3>
